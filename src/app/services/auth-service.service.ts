@@ -5,15 +5,18 @@ import { Injectable } from '@angular/core';
 })
 export class AuthServiceService {
  private _isAuth: boolean = false;
-  constructor() { }
+  constructor() {
+    //let token = sessionStorage.getItem('isAuth');
+   
+    //let tokenJson = token ? JSON.parse(token!): false;
+    //this._isAuth = tokenJson;
+   }
 
   get isAuth(){
       let token = sessionStorage.getItem('isAuth');
-      console.log(token)
-      let tokenJson = JSON.parse(token!);
-      console.log(tokenJson.auth)
+      let tokenJson = token ? JSON.parse(token!): false;
       return token ? tokenJson.auth : false
-      //return this._isAuth
+      
   }
 
   set isAuth(test: boolean){

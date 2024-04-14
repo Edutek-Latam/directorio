@@ -7,7 +7,7 @@ import { ExtEditComponent } from './ext-edit/ext-edit.component';
 const routes: Routes = [
   {path:'',component:HomeLayoutComponent, children:[
     {path:'', component: ExtensionesComponent},
-    {path:'edit',component: ExtEditComponent}
+    {path:'edit/:id',component: ExtEditComponent}
   ]}
 ];
 
