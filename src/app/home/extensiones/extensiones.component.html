@@ -1,5 +1,9 @@
 <div class="container">
     <h2>Extensiones</h2>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+     
+      <a  routerLink="nuevo" class="btn btn-primary" type="button"><i class="fa-solid fa-plus fs-4 text mltr-3"></i>Nuevo</a>
+    </div>
     <table class="table">
         <thead>
           <tr>
@@ -20,8 +24,8 @@
                     <td>{{extension.puesto_departamento}}</td>
                     <td>{{extension.correo}}</td>
                     <td><div class="btn-group" role="group" aria-label="Basic example">
-                        <button (click)="editar(extension._id)"  type="button" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i></button>
-                        <button type="button" class="btn btn-primary"><i class="fa-regular fa-trash-can"></i></button>
+                        <button (click)="editar(extension)"  type="button" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i></button>
+                        <button (click)="remove(extension._id)" type="button" class="btn btn-primary"><i class="fa-regular fa-trash-can"></i></button>
                         <button type="button" class="btn btn-primary"><i class="fa-regular fa-eye"></i></button>
                       </div></td>
                   </tr>

@@ -4,6 +4,7 @@ import { ExtensionService } from '../../services/extension.service';
 import { Extension } from '../../common/interfaces/extension.interfaces';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-ext-edit',
@@ -18,7 +19,8 @@ export class ExtEditComponent implements OnInit {
   constructor(private _activeRouter: ActivatedRoute, 
     private _extensionService: ExtensionService,
     private _router: Router,
-    private _frmBuilder: FormBuilder
+    private _frmBuilder: FormBuilder,
+    private _dataService: DataService
     ){
 
       ///console.log(Object.keys(this.extension))
@@ -30,7 +32,13 @@ export class ExtEditComponent implements OnInit {
       })    
   }
   ngOnInit(): void {
-    let param = this._activeRouter.snapshot.params;
+    console.log(this._dataService.extension);
+    this.extension = this._dataService.extension;
+    if(!this.extension){
+      this._router.navigate(['']);
+    }
+    this.frmExtension.patchValue(this.extension);
+/*     let param = this._activeRouter.snapshot.params;
     if(param){
       this.id = param['id'];
       this._extensionService.getByID(param['id'])
@@ -45,7 +53,7 @@ export class ExtEditComponent implements OnInit {
       });
     }else{
       this._router.navigate(['']);
-    }
+    } */
   }
 
   onSubmit(){

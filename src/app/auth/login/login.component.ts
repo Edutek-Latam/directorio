@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,13 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   frmLogin : FormGroup;
   isSubmited: boolean = false
-  constructor(private _authService: AuthServiceService, private _formBuilder: FormBuilder, private _router: Router ){
+  constructor(
+    private _authService: AuthServiceService, 
+    private _formBuilder: FormBuilder, 
+    private _router: Router,
+    private _dataService: DataService
+    ){
+      this._dataService.clear();
     this.frmLogin = this._formBuilder.group({
       email:['',[Validators.required, Validators.email]],
       password:['',[Validators.required, Validators.minLength(3)]]

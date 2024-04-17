@@ -9,7 +9,6 @@ const API_PATH = 'http://172.210.83.97:3000';
 @Injectable({
   providedIn: 'root'
 })
-
 export class ExtensionService {
   constructor(private _httpClient: HttpClient) {
 
@@ -25,5 +24,14 @@ export class ExtensionService {
 
   update(id: string,data:Extension){
     return this._httpClient.put(`${API_PATH}/extensiones/${id}`,data)
+  }
+
+  ceate(extension:Extension): Observable<Extension>{
+    //if(extension instanceof Extension) return
+    return this._httpClient.post<Extension>(`${API_PATH}/extensiones`,extension);
+  }
+
+  remove(id: string){
+    return this._httpClient.delete<Extension>(`${API_PATH}/extensiones/${id}`)
   }
 }

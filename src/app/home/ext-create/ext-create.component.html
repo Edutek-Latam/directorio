@@ -1,1 +1,44 @@
-<p>ext-create works!</p>
+<div class="container-fluid">
+
+    <div class="row justify-content-sm-center mt-3">
+        <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-10 ">
+            <div class="card shadow-lg">
+                <div class="card-body p-4">
+                    <h1 fs-4  card-title mb-4 >Nueva Extensión</h1>
+                    <form [formGroup]="frmExtension" (ngSubmit)="onSubmit()">
+                        <div class="mb-3">
+                            <label for="" class="mb-2">
+                                Extension
+                            </label>
+                            <input formControlName="extension"  type="text" class="form-control" [disabled]="true" >
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="mb-2">
+                                Puesto
+                            </label>
+                            <input  formControlName="puesto_departamento" type="text" class="form-control"  >
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="mb-2">
+                                Nombre
+                            </label>
+                            <input  formControlName="nombre"  type="text" class="form-control"  >
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="mb-2">
+                                Correo
+                            </label>
+                            <input   formControlName="correo"  type="email" class="form-control"  >
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <button type="submit" class="btn btn-primary ms-auto" >
+                                Actualizar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+               
+            </div>
+        </div>  
+    </div>
+</div>
