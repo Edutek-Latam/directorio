@@ -1,8 +1,13 @@
 <div class="container">
     <h2>Extensiones</h2>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-     
+      <a  (click)="exportPdf()" class="btn " type="button"><i class="text-danger fa-solid fa-file-pdf"></i></a>
+      <a   (click)="exportXlsx()" class="btn " type="button"><i class="text-success fa-regular fa-file-excel"></i></a>
+      <a  class="btn " type="button"><i class=" text-secondary fa-solid fa-file-csv"></i></a>
       <a  routerLink="nuevo" class="btn btn-primary" type="button"><i class="fa-solid fa-plus fs-4 text mltr-3"></i>Nuevo</a>
+     
+
+      
     </div>
     <table class="table">
         <thead>
