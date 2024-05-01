@@ -22,6 +22,8 @@
                             </label>
                             <input  formControlName="password" type="password" class="form-control"  >
                         </div>
+                        <!-- (errored)="errored($event)" -->
+                        <re-captcha formControlName="recaptcha"  (resolved)="resolved($event)"  errorMode="handled"></re-captcha>
                         <div class="d-flex align-items-center">
                             <button type="submit" class="btn btn-primary ms-auto" >
                                 Login

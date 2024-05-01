@@ -8,6 +8,7 @@ import { MENSAJES } from '../../common/enums';
 import jsPDF from 'jspdf'
 import  autoTable, { Color, Styles } from 'jspdf-autotable'
 
+
 import * as xlsx from 'xlsx';
 import { saveAs } from 'file-saver';
 

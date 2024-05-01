@@ -7,7 +7,13 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings,  } from 'ng-recaptcha';
+import { environment } from '../environments/environment';
+console.log(environment.siteKey);
+//Clave del sitio
+//6LedeccpAAAAAAI7ntZ6xPDbtJ0GTdTi2P37L2cv
+//clave secreta
+//6LedeccpAAAAACzIims7BcBf6nEyxHXMW_wOgxml
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,9 +24,14 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: RECAPTCHA_SETTINGS,
+    useValue: { siteKey: '6LedeccpAAAAAAI7ntZ6xPDbtJ0GTdTi2P37L2cv' } as RecaptchaSettings,
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
