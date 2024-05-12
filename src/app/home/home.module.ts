@@ -8,6 +8,8 @@ import { ExtEditComponent } from './ext-edit/ext-edit.component';
 import { ExtCreateComponent } from './ext-create/ext-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { TiendaComponent } from './tiendas/tienda/tienda.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 @NgModule({
@@ -16,15 +18,14 @@ import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
     ExtensionesComponent,
     ExtEditComponent,
     ExtCreateComponent,
+    TiendaComponent,
 
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     ReactiveFormsModule,
-     NgxMapboxGLModule.withConfig({
-      accessToken: 'pk.eyJ1IjoiMjM0MDIyNzYzIiwiYSI6ImNsdmczNmxzeDByeGUya21veHdja3kycHIifQ.k3TIc2c4FTcKaqrZ_CKTcg', // Optional, can also be set per map (accessToken input of mgl-map)
-    }) 
+    GoogleMapsModule
   ]
 })
 export class HomeModule { }

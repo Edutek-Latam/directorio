@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings,  } from 'ng-recaptcha';
 import { environment } from '../environments/environment';
+import { authInterceptor } from './auth.interceptor';
 console.log(environment.siteKey);
 //Clave del sitio
 //6LedeccpAAAAAAI7ntZ6xPDbtJ0GTdTi2P37L2cv
@@ -31,7 +32,9 @@ console.log(environment.siteKey);
   providers: [{
     provide: RECAPTCHA_SETTINGS,
     useValue: { siteKey: '6LedeccpAAAAAAI7ntZ6xPDbtJ0GTdTi2P37L2cv' } as RecaptchaSettings,
-  },],
+  },
+  provideHttpClient(withInterceptors([authInterceptor]))
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

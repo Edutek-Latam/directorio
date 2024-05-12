@@ -6,10 +6,16 @@ export const authGuardGuard: CanActivateFn = async (route, state) => {
   const router = inject(Router)
   const _autService = inject(AuthServiceService);
   const isValid = await _autService.isAuth;
-  console.log(isValid)
+  
+  console.log(isValid.nombre)
   if(!isValid){
+    sessionStorage.removeItem('auth')
     router.navigate(['login'])
   }
  
+  if(_autService.isExpired){  
+    sessionStorage.removeItem('auth')
+    router.navigate(['login'])
+  }
   return true;
 };

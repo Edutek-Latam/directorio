@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ExtensionService } from '../../services/extension.service';
 import { Extension } from '../../common/interfaces/extension.interfaces';
 import { Router } from '@angular/router';
@@ -11,6 +11,8 @@ import  autoTable, { Color, Styles } from 'jspdf-autotable'
 
 import * as xlsx from 'xlsx';
 import { saveAs } from 'file-saver';
+import { User } from '../../common/interfaces/user.interfaces';
+import { AuthServiceService } from '../../services/auth-service.service';
 
 interface Column{
   field: string,
@@ -36,14 +38,17 @@ export class ExtensionesComponent implements OnInit {
   extensiones?: Extension[];
   cols!: Column[]
   exportColumns!: ExportColumn[];
-
+  user: User;
+  @Input() usuario?: User
   constructor(
     private _extensionService: ExtensionService,
+    private _authService: AuthServiceService,
+    
     private _router: Router,
     private _dataService: DataService
     ){
 
-
+      this.user = this._authService.isAuth;
       this.cols = [
         {field:'extension',header:'Extensión'},
         {field:'puesto_departamento',header:'Puesto/Departamento'},

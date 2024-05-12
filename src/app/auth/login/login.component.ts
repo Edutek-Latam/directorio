@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { environment } from '../../../environments/environment';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
 @Component({
@@ -25,24 +26,41 @@ export class LoginComponent {
       console.log('env',environment.siteKey)
       this._dataService.clear();
     this.frmLogin = this._formBuilder.group({
-      email:['',[Validators.required, Validators.email]],
+      username:['',[Validators.required]],
       password:['',[Validators.required, Validators.minLength(3)]],
       recaptcha:['', [Validators.required]]
     });
   }
 
   onSubmit(){
-    console.log('valid', this.frmLogin.valid)
+    console.log('valid', this.frmLogin.value)
      if(this.isSubmited) return;
 
     if(this.frmLogin.valid){
+      Loading.arrows();
       this.isSubmited = true;
-      this._authService.isAuth = true;
-      setTimeout(() => {
+      const {username, password} = this.frmLogin.value;
+      this._authService.login({username,password})
+      .subscribe({
+      next:result=>{
+        this._authService.isAuth = result;
+        Loading.remove()
+        this._router.navigate([''])
+      this.isSubmited = false;
+      },
+      error:errors=>{
+        console.error(errors)
+        Loading.remove()
+        Report.failure('Lab Angular','Usuario y/o contraseña son incorrecto','Aceptar')
+        this.isSubmited =false
+      }})
+      //this._authService.isAuth = true;
+
+     /*  setTimeout(() => {
         this._router.navigate([''])
         Report.success('Sistema','Bievenido','Acepar')
         this.isSubmited = false
-      }, 1000);
+      }, 1000); */
     } 
   }
 

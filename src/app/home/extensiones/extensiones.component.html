@@ -4,7 +4,7 @@
       <a  (click)="exportPdf()" class="btn " type="button"><i class="text-danger fa-solid fa-file-pdf"></i></a>
       <a   (click)="exportXlsx()" class="btn " type="button"><i class="text-success fa-regular fa-file-excel"></i></a>
       <a  class="btn " type="button"><i class=" text-secondary fa-solid fa-file-csv"></i></a>
-      <a  routerLink="nuevo" class="btn btn-primary" type="button"><i class="fa-solid fa-plus fs-4 text mltr-3"></i>Nuevo</a>
+      <a *ngIf="user.rol.includes('CRATE_EXTENSION')" routerLink="nuevo" class="btn btn-primary" type="button"><i class="fa-solid fa-plus fs-4 text mltr-3"></i>Nuevo</a>
      
 
       
@@ -28,9 +28,11 @@
                     <td>{{extension.nombre}}</td>
                     <td>{{extension.puesto_departamento}}</td>
                     <td>{{extension.correo}}</td>
-                    <td><div class="btn-group" role="group" aria-label="Basic example">
-                        <button (click)="editar(extension)"  type="button" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i></button>
-                        <button (click)="remove(extension._id)" type="button" class="btn btn-primary"><i class="fa-regular fa-trash-can"></i></button>
+                    <td>
+                      
+                      <div class="btn-group" role="group" aria-label="Basic example">
+                        <button *ngIf="user.rol.includes('UPDATE_EXTENSION')"    (click)="editar(extension)"  type="button" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i></button>
+                        <button *ngIf="user.rol.includes('DELETE_EXTENSION')"    (click)="remove(extension._id)" type="button" class="btn btn-primary"><i class="fa-regular fa-trash-can"></i></button>
                         <button type="button" class="btn btn-primary"><i class="fa-regular fa-eye"></i></button>
                       </div></td>
                   </tr>
